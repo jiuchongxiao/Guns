@@ -53,7 +53,7 @@ AppInfo.openAddAppInfo = function () {
         area: ['800px', '420px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/AppInfo/AppInfo_add'
+        content: Feng.ctxPath + '/appInfo/appInfo_add'
     });
     this.layerIndex = index;
 };
@@ -69,7 +69,7 @@ AppInfo.openAppInfoDetail = function () {
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/AppInfo/AppInfo_update/' + AppInfo.seItem.id
+            content: Feng.ctxPath + '/appInfo/appInfo_update/' + AppInfo.seItem.id
         });
         this.layerIndex = index;
     }
@@ -80,13 +80,13 @@ AppInfo.openAppInfoDetail = function () {
  */
 AppInfo.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/AppInfo/delete", function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/appInfo/delete", function (data) {
             Feng.success("删除成功!");
             AppInfo.table.refresh();
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("AppInfoId",this.seItem.id);
+        ajax.set("appInfoId",this.seItem.id);
         ajax.start();
     }
 };
@@ -102,7 +102,7 @@ AppInfo.search = function () {
 
 $(function () {
     var defaultColunms = AppInfo.initColumn();
-    var table = new BSTable(AppInfo.id, "/AppInfo/list", defaultColunms);
+    var table = new BSTable(AppInfo.id, "/appInfo/list", defaultColunms);
     table.setPaginationType("client");
     AppInfo.table = table.init();
 });

@@ -2,14 +2,14 @@
  * 初始化应用管理详情对话框
  */
 var AppInfoInfoDlg = {
-    AppInfoInfoData : {}
+    appInfoInfoData : {}
 };
 
 /**
  * 清除数据
  */
 AppInfoInfoDlg.clearData = function() {
-    this.AppInfoInfoData = {};
+    this.appInfoInfoData = {};
 }
 
 /**
@@ -19,7 +19,7 @@ AppInfoInfoDlg.clearData = function() {
  * @param val 数据的具体值
  */
 AppInfoInfoDlg.set = function(key, val) {
-    this.AppInfoInfoData[key] = (typeof val == "undefined") ? $("#" + key).val() : val;
+    this.appInfoInfoData[key] = (typeof val == "undefined") ? $("#" + key).val() : val;
     return this;
 }
 
@@ -68,14 +68,14 @@ AppInfoInfoDlg.addSubmit = function() {
     this.collectData();
 
     //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/AppInfo/add", function(data){
+    var ajax = new $ax(Feng.ctxPath + "/appInfo/add", function(data){
         Feng.success("添加成功!");
         window.parent.AppInfo.table.refresh();
         AppInfoInfoDlg.close();
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.AppInfoInfoData);
+    ajax.set(this.appInfoInfoData);
     ajax.start();
 }
 
@@ -88,14 +88,14 @@ AppInfoInfoDlg.editSubmit = function() {
     this.collectData();
 
     //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/AppInfo/update", function(data){
+    var ajax = new $ax(Feng.ctxPath + "/appInfo/update", function(data){
         Feng.success("修改成功!");
         window.parent.AppInfo.table.refresh();
         AppInfoInfoDlg.close();
     },function(data){
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.AppInfoInfoData);
+    ajax.set(this.appInfoInfoData);
     ajax.start();
 }
 

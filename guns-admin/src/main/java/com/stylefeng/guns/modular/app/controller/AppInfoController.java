@@ -16,42 +16,42 @@ import com.stylefeng.guns.modular.app.service.IAppInfoService;
  * 应用管理控制器
  *
  * @author fengshuonan
- * @Date 2017-12-03 22:24:33
+ * @Date 2017-12-03 22:42:59
  */
 @Controller
-@RequestMapping("/AppInfo")
+@RequestMapping("/appInfo")
 public class AppInfoController extends BaseController {
 
-    private String PREFIX = "/app/AppInfo/";
+    private String PREFIX = "/app/appInfo/";
 
     @Autowired
-    private IAppInfoService AppInfoService;
+    private IAppInfoService appInfoService;
 
     /**
      * 跳转到应用管理首页
      */
     @RequestMapping("")
     public String index() {
-        return PREFIX + "AppInfo.html";
+        return PREFIX + "appInfo.html";
     }
 
     /**
      * 跳转到添加应用管理
      */
-    @RequestMapping("/AppInfo_add")
-    public String AppInfoAdd() {
-        return PREFIX + "AppInfo_add.html";
+    @RequestMapping("/appInfo_add")
+    public String appInfoAdd() {
+        return PREFIX + "appInfo_add.html";
     }
 
     /**
      * 跳转到修改应用管理
      */
-    @RequestMapping("/AppInfo_update/{AppInfoId}")
-    public String AppInfoUpdate(@PathVariable Integer AppInfoId, Model model) {
-        AppInfo AppInfo = AppInfoService.selectById(AppInfoId);
-        model.addAttribute("item",AppInfo);
-        LogObjectHolder.me().set(AppInfo);
-        return PREFIX + "AppInfo_edit.html";
+    @RequestMapping("/appInfo_update/{appInfoId}")
+    public String appInfoUpdate(@PathVariable Integer appInfoId, Model model) {
+        AppInfo appInfo = appInfoService.selectById(appInfoId);
+        model.addAttribute("item",appInfo);
+        LogObjectHolder.me().set(appInfo);
+        return PREFIX + "appInfo_edit.html";
     }
 
     /**
@@ -60,7 +60,7 @@ public class AppInfoController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return AppInfoService.selectList(null);
+        return appInfoService.selectList(null);
     }
 
     /**
@@ -68,8 +68,8 @@ public class AppInfoController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(AppInfo AppInfo) {
-        AppInfoService.insert(AppInfo);
+    public Object add(AppInfo appInfo) {
+        appInfoService.insert(appInfo);
         return super.SUCCESS_TIP;
     }
 
@@ -78,8 +78,8 @@ public class AppInfoController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer AppInfoId) {
-        AppInfoService.deleteById(AppInfoId);
+    public Object delete(@RequestParam Integer appInfoId) {
+        appInfoService.deleteById(appInfoId);
         return SUCCESS_TIP;
     }
 
@@ -88,17 +88,17 @@ public class AppInfoController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update(AppInfo AppInfo) {
-        AppInfoService.updateById(AppInfo);
+    public Object update(AppInfo appInfo) {
+        appInfoService.updateById(appInfo);
         return super.SUCCESS_TIP;
     }
 
     /**
      * 应用管理详情
      */
-    @RequestMapping(value = "/detail/{AppInfoId}")
+    @RequestMapping(value = "/detail/{appInfoId}")
     @ResponseBody
-    public Object detail(@PathVariable("AppInfoId") Integer AppInfoId) {
-        return AppInfoService.selectById(AppInfoId);
+    public Object detail(@PathVariable("appInfoId") Integer appInfoId) {
+        return appInfoService.selectById(appInfoId);
     }
 }
